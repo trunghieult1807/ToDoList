@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:200,300,400,600,700" rel=stylesheet>
+    <link rel=icon href=/favicon.ico>
+    <title>To do list</title>
+    <link rel="stylesheet" type="text/css" href="/css/todolist.css">
+    <script type = "text/javascript" src = "{{ url_for('static', filename = 'js/hello.js') }}" ></script>
+  </head>
+  <body>
+    <div id = app>
+      <h1>To do list</h1>
+      <div class = "tasks-progress progress-value">Process</div>
+      <form action = "{{ url_for('index') }}" method="post" name = "add">
+        <input  class = "form-element" type = "text" name = "task" placeholder = "New task?">
+        <button class = "button-element">+</button>
+      </form>
+      <div class = "task-grid">
+
+        {% for task in tasks %}
+          <div id = "{{task}}" type = "button" onclick = "myFunction()" class = "task pending">
+            <div type = "button" onclick = "changeStateOfTask()" class ="close">x</div>
+            {{task}}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+  <script>
+    function myFunction() {
+      var element = document.getElementById("a");
+      element.classList.toggle("done");
+    }
+  </script>
+</html>
